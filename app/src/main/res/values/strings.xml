@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tic Tac Toe</string>
+    <string name="restartButtonText">Restart</string>
+    <string name="playerplayerButtonText">Player vs. Player</string>
+    <string name="menuButtonText">Menu</string>
+    <string name="qutiButtonText">Quit</string>
+    <string name="resumeButtonText">Resume</string>
+    <string name="titleTextViewText">Tic Tac Toe</string>
+    <string name="playerCpuButtonText">Player vs. CPU</string>
+    <string name="flashlightCheck">FlashLight</string>
+</resources>
