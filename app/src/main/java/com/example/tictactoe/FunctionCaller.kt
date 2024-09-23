@@ -1,6 +1,6 @@
 package com.example.tictactoe
 
-class FunctionCaller(private var function: () -> Unit): Runnable {
+class FunctionCaller(private var function: () -> Unit) : Runnable {
 
     private var activated = false
 

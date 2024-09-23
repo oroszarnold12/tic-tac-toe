@@ -4,9 +4,14 @@ import android.content.SharedPreferences
 import android.widget.Button
 import android.widget.TextView
 
-class Board(private val buttons: Array<Button>, private val message: TextView, private val functionCaller: FunctionCaller,
-            private var cameraAccessGranted: Boolean, private val sharedPreferences:SharedPreferences,
-            private val isAgainstCpu: Boolean) {
+class Board(
+    private val buttons: Array<Button>,
+    private val message: TextView,
+    private val functionCaller: FunctionCaller,
+    private var cameraAccessGranted: Boolean,
+    private val sharedPreferences: SharedPreferences,
+    private val isAgainstCpu: Boolean
+) {
 
     private var round = 0
     private val cpu: Cpu = Cpu(this)
@@ -20,12 +25,12 @@ class Board(private val buttons: Array<Button>, private val message: TextView, p
     }
 
     private fun disableButtons() {
-        for(i in 0..8) {
+        for (i in 0..8) {
             buttons[i].isEnabled = false
         }
     }
 
-    private fun checkWinner(){
+    private fun checkWinner() {
 
         if (buttons[0].tag == buttons[4].tag && buttons[4].tag == buttons[8].tag && buttons[8].tag != "") {
             animateButton(buttons[0])
@@ -92,7 +97,7 @@ class Board(private val buttons: Array<Button>, private val message: TextView, p
     }
 
     fun onClick(i: Int, notCpu: Boolean) {
-        if(buttons[i].tag == "" && buttons[i].isEnabled) {
+        if (buttons[i].tag == "" && buttons[i].isEnabled) {
             if (round % 2 == 0) {
                 val msg = "Player 0's turn"
                 message.text = msg
@@ -122,6 +127,7 @@ class Board(private val buttons: Array<Button>, private val message: TextView, p
                     val msg = "Player X's turn"
                     message.text = msg
                 }
+
                 else -> {
                     val msg = "Player 0's turn"
                     message.text = msg
@@ -130,7 +136,7 @@ class Board(private val buttons: Array<Button>, private val message: TextView, p
         }
     }
 
-    fun setCameraAccessGranted (value: Boolean) {
+    fun setCameraAccessGranted(value: Boolean) {
         cameraAccessGranted = value
     }
 
@@ -159,6 +165,7 @@ class Board(private val buttons: Array<Button>, private val message: TextView, p
                 "X" -> {
                     buttons[i].setBackgroundResource(R.drawable.image_x)
                 }
+
                 "0" -> {
                     buttons[i].setBackgroundResource(R.drawable.image_0)
                 }

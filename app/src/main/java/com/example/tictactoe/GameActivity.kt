@@ -13,7 +13,19 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.activity_game.button00
+import kotlinx.android.synthetic.main.activity_game.button01
+import kotlinx.android.synthetic.main.activity_game.button02
+import kotlinx.android.synthetic.main.activity_game.button10
+import kotlinx.android.synthetic.main.activity_game.button11
+import kotlinx.android.synthetic.main.activity_game.button12
+import kotlinx.android.synthetic.main.activity_game.button20
+import kotlinx.android.synthetic.main.activity_game.button21
+import kotlinx.android.synthetic.main.activity_game.button22
+import kotlinx.android.synthetic.main.activity_game.flashLightCheckBox
+import kotlinx.android.synthetic.main.activity_game.menuButton
+import kotlinx.android.synthetic.main.activity_game.message
+import kotlinx.android.synthetic.main.activity_game.restartButton
 
 class GameActivity : AppCompatActivity() {
 
@@ -47,13 +59,22 @@ class GameActivity : AppCompatActivity() {
 
         var cameraAccessGranted = false
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), requestPermissionCode)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                requestPermissionCode
+            )
         } else {
             cameraAccessGranted = true
         }
 
-        val isFlashAvailable = applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)
+        val isFlashAvailable =
+            applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)
         if (!isFlashAvailable) {
             showNoFlashError()
         }
@@ -70,18 +91,25 @@ class GameActivity : AppCompatActivity() {
             button20, button21, button22
         )
 
-        board = Board(buttons, message, functionCaller, cameraAccessGranted, sharedPreferences, isAgainstCpu)
+        board = Board(
+            buttons,
+            message,
+            functionCaller,
+            cameraAccessGranted,
+            sharedPreferences,
+            isAgainstCpu
+        )
 
         button00.setOnClickListener {
             board.onClick(0, true)
         }
 
         button01.setOnClickListener {
-            board.onClick(1,  true)
+            board.onClick(1, true)
         }
 
         button02.setOnClickListener {
-            board.onClick(2,  true)
+            board.onClick(2, true)
         }
 
         button10.setOnClickListener {
@@ -89,23 +117,23 @@ class GameActivity : AppCompatActivity() {
         }
 
         button11.setOnClickListener {
-            board.onClick(4,  true)
+            board.onClick(4, true)
         }
 
         button12.setOnClickListener {
-            board.onClick(5,  true)
+            board.onClick(5, true)
         }
 
         button20.setOnClickListener {
-            board.onClick(6,  true)
+            board.onClick(6, true)
         }
 
         button21.setOnClickListener {
-            board.onClick(7,  true)
+            board.onClick(7, true)
         }
 
         button22.setOnClickListener {
-            board.onClick(8,  true)
+            board.onClick(8, true)
         }
 
         restartButton.setOnClickListener {
@@ -120,12 +148,16 @@ class GameActivity : AppCompatActivity() {
             board.setCameraAccessGranted(flashLightCheckBox.isChecked)
         }
 
-        if(resuming) {
+        if (resuming) {
             board.loadState()
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             requestPermissionCode -> {

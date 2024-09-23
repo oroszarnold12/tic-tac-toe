@@ -17,6 +17,7 @@ class Cpu(private var board: Board) {
             0 -> {
                 cpuPlayer = "X"
             }
+
             1 -> {
                 cpuPlayer = "0"
             }
